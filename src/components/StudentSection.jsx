@@ -59,6 +59,7 @@ const StudentSection = () => {
 
       setStudents(updatedStudents)
       setUpdateData(false)
+      setSelectStudent(null)
 
     } else {
 
