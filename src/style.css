@@ -1,0 +1,24 @@
+
+
+body {
+  background-color: #f4f6f9;
+  font-family: Arial, sans-serif;
+  
+}
+
+.hero-section {
+  background: linear-gradient(to right, hsl(287, 63%, 75%), #b724f1);
+}
+
+.student-card {
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.student-card:hover {
+  transform: translateY(-5px);
+}
+
+button {
+  border-radius: 6px;
+}
