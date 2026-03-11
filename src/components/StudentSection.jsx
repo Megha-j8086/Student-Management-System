@@ -16,6 +16,8 @@ const StudentSection = () => {
   const [name, setName] = useState("")
   const [batch, setBatch] = useState("")
   const [course, setCourse] = useState("")
+  const [email, setEmail] =useState("")
+  const [phoneno , setPhoneno] =useState("")
 
   useEffect(() => {            //this is used for print data in our page
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -26,7 +28,9 @@ const StudentSection = () => {
           id: user.id,
           name: user.name,
           course: "fullstack development",
-          batch: "2024"
+          batch: "2024",
+          email:user.email,
+          phoneno:user.phone
         }))
         setStudents(formattedStudent)
 
@@ -53,7 +57,7 @@ const StudentSection = () => {
 
       const updatedStudents = students.map((student) =>
         student.id === selectStudent.id
-          ? { ...student, name, course, batch }
+          ? { ...student, name, course, batch,email, phoneno  }
           : student
       )
 
@@ -67,7 +71,9 @@ const StudentSection = () => {
         id: Date.now(),
         name: name,
         batch: batch,
-        course: course
+        course: course,
+        email:email,
+        phoneno:phoneno
       }
       setStudents([...students, newStudents])
     }
@@ -75,6 +81,8 @@ const StudentSection = () => {
     setName("")
     setCourse("")
     setBatch("")
+    setEmail("")
+    setPhoneno("")
     setFormLive(false)
 
   }
@@ -90,6 +98,8 @@ const StudentSection = () => {
     setName(students.name)
     setCourse(students.course)
     setBatch(students.batch)
+    setEmail(students.email)
+    setPhoneno(students.phoneno)
     setSelectStudent(students)
   }
 
@@ -123,6 +133,8 @@ const StudentSection = () => {
             name={student.name}
             course={student.course}
             batch={student.batch}
+            email={student.email}
+            phoneno={student.phoneno}
             onView={() => handleView(student)}
             onEdit={() => handleUpdate(student)}
             onDelete={() => handleDelete(student.id)}
@@ -142,6 +154,8 @@ const StudentSection = () => {
           <p><b>Name:</b> {selectStudent.name}</p>
           <p><b>Course:</b> {selectStudent.course}</p>
           <p><b>Batch:</b> {selectStudent.batch}</p>
+          <p><b>Email:</b> {selectStudent.email}</p>
+          <p><b>Phone No:</b> {selectStudent.phoneno}</p>
 
           <button
             className="btn btn-sm btn-dark mt-2"
@@ -163,7 +177,8 @@ const StudentSection = () => {
           <input type="text" placeholder="Name" className="form-control mb-2" value={name} onChange={(e) => setName(e.target.value)} />
           <input type="text" placeholder="Course" className="form-control mb-2" value={course} onChange={(e) => setCourse(e.target.value)} />
           <input type="text" placeholder="Batch" className="form-control mb-2" value={batch} onChange={(e) => setBatch(e.target.value)} />
-
+          <input type="text" placeholder="Email" className="form-control mb-2" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="text" placeholder="Phone No" className="form-control mb-2" value={phoneno} onChange={(e) => setPhoneno(e.target.value)} />
           <button className="btn btn-success me-2" onClick={handleSubmit} >
             Submit
           </button>
